@@ -17,6 +17,22 @@ class PostController extends Controller
     {
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
+    
+     public function anotherIndex(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'body', "%{$keyword}%")
+                ->orWhere('author', 'body', "%{$keyword}%");
+        }
+
+        $posts = $query->get();
+
+        return view('anotherIndex', compact('posts', 'keyword'));
+    }
 
     public function show(Post $post, Reaction $reaction)
     {

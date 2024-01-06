@@ -32,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/', [PostController::class, 'index'])->name('index');
+    Route::get('/path1', [PostController::class, 'index'])->name('index');
+    Route::get('/path2', [PostController::class, 'anotherIndex'])->name('posts.index');
     Route::post('/posts',  [PostController::class, 'store']);
     Route::get('/posts/create',  [PostController::class, 'create']);
     Route::get('/posts/{post}',  [PostController::class, 'show']);

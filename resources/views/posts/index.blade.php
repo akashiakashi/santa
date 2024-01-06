@@ -4,6 +4,13 @@
         </x-slot>
 
         <h1 class="text-orange-600 bg-white-100">サンタクロースとおはなししよう！！</h1>
+        <div>
+            <form action="{{ route('posts.index') }}" method="GET">
+                <input type="text" name="keyword" value="{{ $keyword }}">
+                <input type="submit" value="検索">
+            </form>
+        </div>
+        
         <h2>✨みんなのとうこう✨</h2>
         <p class="text-lg ">みんなの【ききたいこと】や【つたえたいこと】をサンタさんにおくると、おへんじがもらえるよ❕</p>
         <div class="mt-2 mb-2">
