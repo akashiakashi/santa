@@ -15,7 +15,7 @@ h3 {
     @apply text-lg font-medium;
 }
 a {
-    @apply text-blue-600 underline font-medium;
+    @apply text-blue-600 underline font-medium font-mono;
 }
 
 body{font-family: 'ヒラギノ角ゴ ProN W3', sans-serif !important;

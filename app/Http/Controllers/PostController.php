@@ -13,9 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    
+     public function index(Request $request, Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        $keyword = $request->input('keyword');
+
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orwhere('body', 'LIKE', "%{$keyword}%");
+        }
+
+        $posts = $query->get();
+
+        return view('posts/index', compact('keyword', 'posts'));
     }
 
     public function show(Post $post, Reaction $reaction)
