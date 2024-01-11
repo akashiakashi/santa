@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
-        <h1>チーム開発会へようこそ！</h1>
-        <h2>カテゴリー:{{ $category_name }} の投稿一覧画面</h2>
-        <a href='/'>投稿一覧ページへ戻る</a>
+    <x-app-layout>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="overflow-hidden shadow-sm sm:rounded-lg">
+        <h1>カテゴリー:{{ $category_name }} のとうこう</h1>
         <div>
             @foreach ($posts as $post)
                 <div style='border:solid 1px; margin-bottom: 10px;'>
-                    <p>
-                        タイトル：<a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                    </p>
-                    <p>カテゴリー：{{ $post->category->name }}</p>
+                    <table>
+                        <tr>
+                            <th width="300" align="center">タイトル</th>
+                            <th width="300" align="left"><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></th>
+                        </tr>
+                        <tr>
+                            <td width="300" align="center">カテゴリー</td>
+                            <td width="300" align="left">{{ $post->category->name }}</td>
+                        </tr>
+                    </table>
                 </div>
             @endforeach
         </div>
         <div>
             {{ $posts->links() }}
         </div>
-    </body>
-</html>
+        </div>
+        </div>
+</x-app-layout>
